@@ -964,15 +964,6 @@ dfs:[
   keyRule:"DFS time = O(b^m) — exponential. DFS space = O(bm) — linear. Time and space are different!",
   map:{start:["Start"],expanded:[],frontier:[],goal:["Shrine"],solution:[]}
 },
-  trace:[],
-  ask:"Maximum nodes stored at once by DFS (b=3, m=6):",
-  activeStep:-1,
-  opts:["b×m = 3×6 = 18 nodes — current path + siblings at each level","b^m = 3^6 = 729 nodes — same as BFS","m = 6 nodes — only the current path","b^d where d = depth of the goal"],
-  ans:0,
-  explain:"DFS stores the current path plus the unexplored siblings at each level. At each of the m=6 levels, at most b=3 nodes sit on the stack. Total ≤ b×m = 18. BFS must store the entire frontier: up to 729 nodes.",
-  keyRule:"DFS space = O(b×m). BFS space = O(b^d). DFS is the clear winner on memory for deep searches.",
-  map:{start:["Start"],expanded:[],frontier:[],goal:["Shrine"],solution:[]}
-},
 {
   rule:"DFS is NOT complete in cyclic graphs without an explored set — it loops forever",
   q:"DFS has NO explored set. It expands Start→Forest→Village→Mountain→Castle. What happens?",
