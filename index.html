@@ -953,8 +953,17 @@ dfs:[
   map:{start:["Start"],expanded:["Start","Forest","Village","Mountain","Tower","Portal"],frontier:["Castle","Swamp","Cave"],goal:["Shrine"],solution:["Start","Forest","Village","Mountain","Tower","Portal","Shrine"]}
 },
 {
-  rule:"DFS has O(b×m) space complexity — far better than BFS's O(b^d)",
-  q:"The Adventure Game has branching factor b=3 and max depth m=6. BFS stores up to b^m = 729 nodes. At most how many nodes does DFS store simultaneously?",
+  rule:"DFS time complexity is O(b^m) — exponential in the maximum depth m, not the goal depth d",
+  q:"The Adventure Game has branching factor b=2 and max depth m=6. DFS explores Start→Forest→Village→Mountain→Tower→Portal but Portal is a dead end, so DFS backtracks. In the WORST case, how many nodes does DFS examine before finding Shrine (or failing)?",
+  trace:[],
+  ask:"Worst-case number of nodes DFS examines (b=2, m=6):",
+  activeStep:-1,
+  opts:["b^m = 2^6 = 64 nodes — DFS may visit every node in the tree in the worst case","b×m = 2×6 = 12 nodes — DFS only stores the current path","b^d = 2^4 = 16 nodes — DFS stops at the goal depth d=4","m = 6 nodes — DFS only visits one path at a time"],
+  ans:0,
+  explain:"DFS time complexity is O(b^m) — in the worst case it may explore the entire search tree down to depth m before finding the goal. Here 2^6 = 64 nodes. Note: space complexity is only O(bm)=12, because DFS does not store the whole tree in memory — but it still visits exponentially many nodes over time.",
+  keyRule:"DFS time = O(b^m) — exponential. DFS space = O(bm) — linear. Time and space are different!",
+  map:{start:["Start"],expanded:[],frontier:[],goal:["Shrine"],solution:[]}
+},
   trace:[],
   ask:"Maximum nodes stored at once by DFS (b=3, m=6):",
   activeStep:-1,
