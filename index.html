@@ -996,7 +996,7 @@ ucs:[
   trace:[{step:0,exp:"—",front:"PQ: [(Source, 0)]"},{step:1,exp:"Source (g=0)",front:"PQ: [(R1, 10), (R2, 15)]"}],
   ask:"What is in the priority queue after expanding Source?",
   activeStep:1,
-  opts:["[(R1, 10), (R2, 15)] — sorted by total latency (g-value)","[(R2, 15), (R1, 10)] — reverse order","[(Source, 0), (R1, 10), (R2, 15)]","[(R1, 10), (R2, 15), (Source, 0)]"],
+  opts:["[R1, R2]","[R2, R1]","[Source, R1, R2]","[R1, R2, Source]"],
   ans:0,
   explain:"UCS calculates g(n) = parent's g + edge cost. From Source (g=0): R1 gets g = 0+10 = 10, R2 gets g = 0+15 = 15. Priority queue orders by g ascending: [(R1,10),(R2,15)].",
   keyRule:"g(n) = cumulative cost from start. Priority queue is sorted ascending — minimum cost always at front.",
@@ -1008,8 +1008,7 @@ ucs:[
   trace:[{step:1,exp:"Source (g=0)",front:"PQ: [(R1,10),(R2,15)]"},{step:2,exp:"R1 (g=10)",front:"PQ: [(R2,15),(R3,18),(R4,22)]"}],
   ask:"What is the priority queue after expanding R1?",
   activeStep:1,
-  opts:["[(R2,15), (R3,18), (R4,22)]","[(R3,18), (R4,22), (R2,15)]","[(R1,10), (R2,15), (R3,18), (R4,22)]","[(R2,15), (R4,22), (R3,18)]"],
-  ans:0,
+opts:["[R2, R3, R4]","[R3, R4, R2] ","[R1, R2, R3, R4]","[R2, R4, R3]"],  ans:0,
   explain:"R1 (minimum g=10) is expanded. Its children: R3 gets g = 10+8 = 18, R4 gets g = 10+12 = 22. R2 was already in the queue at g=15. New queue sorted by g: [(R2,15),(R3,18),(R4,22)].",
   keyRule:"UCS: always expand the node with the lowest g(n). Newly added children are inserted in sorted order.",
   map:{start:["Source"],expanded:["Source","R1"],frontier:["R2","R3","R4"],goal:["Dest"],solution:[]}
