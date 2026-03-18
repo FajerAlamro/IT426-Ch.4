@@ -66,9 +66,6 @@ body::after {
   pointer-events:none; z-index:0;
 }
 
-/* ══════════════════════════════════════════
-   POPUP MODAL
-══════════════════════════════════════════ */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -218,7 +215,6 @@ body::after {
 }
 .modal-ok-btn:active { transform: translateY(0); }
 
-/* Ripple on click */
 .modal-ok-btn::after {
   content: '';
   position: absolute;
@@ -229,7 +225,6 @@ body::after {
 }
 .modal-ok-btn:active::after { opacity: 1; }
 
-/* Score badge in modal */
 .modal-score-badge {
   display: inline-flex;
   align-items: center;
@@ -252,7 +247,6 @@ body::after {
 .correct-modal .modal-score-dot { background: #16a34a; }
 .wrong-modal   .modal-score-dot { background: #dc2626; }
 
-/* ══ NAV ══ */
 .nav {
   position:sticky; top:0; z-index:100;
   display:flex; align-items:center; gap:14px;
@@ -279,7 +273,6 @@ body::after {
 }
 .nav-back:hover { color:var(--ksu); border-color:var(--ksu); background:var(--ksu-light); }
 
-/* ══ HOME ══ */
 #home {
   min-height:calc(100vh - 58px);
   display:flex; flex-direction:column;
@@ -339,7 +332,6 @@ body::after {
 .card-arr { position:absolute; bottom:20px; right:22px; font-size:18px; color:var(--muted2); transition:all .25s; }
 .algo-card:hover .card-arr { color:var(--ksu); transform:translate(3px,-3px); }
 
-/* ══ PRACTICE ══ */
 #practice { display:none; position:relative; z-index:1; }
 .practice-layout { max-width:1100px; margin:0 auto; padding:32px 24px 80px; display:grid; grid-template-columns:1fr 360px; gap:28px; align-items:start; }
 @media(max-width:880px){ .practice-layout{ grid-template-columns:1fr; } }
@@ -380,7 +372,6 @@ body::after {
 .li { display:flex; align-items:center; gap:5px; font-size:10px; color:var(--text2); font-family:'JetBrains Mono',monospace; }
 .ld { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
 
-/* ══ RESULTS ══ */
 #results { display:none; flex-direction:column; align-items:center; justify-content:center; min-height:calc(100vh - 58px); padding:80px 24px; position:relative; z-index:1; }
 .res-pct { font-size:92px; font-weight:800; line-height:1; margin-bottom:6px; letter-spacing:-4px; color:var(--ksu); }
 .res-sub { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2.5px; color:var(--muted); margin-bottom:24px; text-transform:uppercase; }
@@ -398,7 +389,6 @@ body::after {
 .tnk { color:var(--wrong); font-weight:700; font-family:'JetBrains Mono',monospace; }
 
 @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-@keyframes popIn { from { opacity:0; transform:scale(0.85) translateY(16px); } to { opacity:1; transform:scale(1) translateY(0); } }
 
 .site-footer { background: var(--blue-900); padding: 30px 30px 25px; text-align: center; margin-top: 60px; border-top: 2px solid rgba(79,70,229,0.3); position: relative; z-index: 1; isolation: isolate; }
 .footer-title { color: var(--blue-100); font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
@@ -408,7 +398,6 @@ body::after {
 </head>
 <body>
 
-<!-- ══════════════ POPUP MODAL ══════════════ -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box" id="modal-box">
     <div class="modal-header">
@@ -425,7 +414,7 @@ body::after {
       </div>
       <div id="modal-explain"></div>
       <div class="modal-key-rule" id="modal-key-rule" style="display:none">
-        <strong>📌 Key Rule</strong>
+        <strong>Key Rule</strong>
         <span id="modal-key-rule-text"></span>
       </div>
     </div>
@@ -443,7 +432,6 @@ body::after {
   <img class="ksu-logo" src="images/ksu.png" alt="King Saud University" style="height:38px;border-radius:5px;">
 </nav>
 
-<!-- HOME -->
 <div id="home">
   <div class="home-pill">
     <span class="home-pill-dot"></span>
@@ -466,10 +454,11 @@ body::after {
       <div class="concept-card dfs">
         <h4>DFS — Depth-First Search</h4>
         <div class="concept-item"><span class="ci-arrow">▸</span><span>Data structure: LIFO Stack</span></div>
-        <div class="concept-item"><span class="ci-arrow">▸</span><span>Add children to FRONT of frontier</span></div>
+        <div class="concept-item"><span class="ci-arrow">▸</span><span>Add children to FRONT (top) of frontier</span></div>
         <div class="concept-item"><span class="ci-arrow">▸</span><span>Expand deepest node first</span></div>
         <div class="concept-item"><span class="ci-arrow">▸</span><span>Goal test on EXPANSION</span></div>
-        <div class="concept-item"><span class="ci-arrow">▸</span><span>NOT optimal — finds first path</span></div>
+        <div class="concept-item"><span class="ci-arrow">▸</span><span>NOT optimal — finds first path found</span></div>
+        <div class="concept-item"><span class="ci-arrow">▸</span><span>Frontier shown as [top, …, bottom]</span></div>
       </div>
       <div class="concept-card ucs">
         <h4>UCS — Uniform Cost Search</h4>
@@ -496,7 +485,7 @@ body::after {
       <div class="card-badge">Stack · LIFO</div>
       <div class="card-abbr">DFS</div>
       <div class="card-name">Depth-First Search</div>
-      <div class="card-desc">Navigate an Adventure Game world — dive deep into dungeons and portals. Understand stacks, backtracking, and non-optimal paths.</div>
+      <div class="card-desc">Navigate an Adventure Game world — track the frontier as [top, …, bottom] and trace expansions step by step.</div>
       <div class="card-count">10 questions</div>
       <div class="card-arr">→</div>
     </div>
@@ -511,7 +500,6 @@ body::after {
   </div>
 </div>
 
-<!-- PRACTICE -->
 <div id="practice">
   <div class="practice-layout">
     <div id="q-col">
@@ -526,7 +514,7 @@ body::after {
       <div class="q-meta" id="q-meta">Question 1</div>
       <div class="q-text" id="q-text"></div>
       <div class="trainer-box" id="trainer-box" style="display:none">
-        <h4>📋 Search Trace</h4>
+        <h4>Search Trace</h4>
         <table class="trace-table" id="trace-table">
           <thead><tr><th>Step</th><th>Node Expanded</th><th>Frontier After</th></tr></thead>
           <tbody id="trace-body"></tbody>
@@ -555,7 +543,6 @@ body::after {
   </div>
 </div>
 
-<!-- RESULTS -->
 <div id="results">
   <div class="res-pct" id="res-pct"></div>
   <div class="res-sub" id="res-sub"></div>
@@ -576,10 +563,9 @@ body::after {
 </footer>
 
 <script>
-// ============ GRAPH DATA ============
 const GRAPHS = {
 bfs: {
-  label: "🚇 Riyadh Metro — Station Map",
+  label: "Riyadh Metro — Station Map",
   nodes: {
     Airport:    {x:310,y:28}, King_Fahd:  {x:195,y:28}, Olaya:      {x:100,y:65},
     Riyadh_HQ:  {x:280,y:80}, University: {x:185,y:105}, AlMuruj:    {x:95,y:140},
@@ -602,7 +588,7 @@ bfs: {
   ]
 },
 dfs: {
-  label: "🎮 Adventure Game — World Map",
+  label: "Adventure Game — World Map",
   nodes: {
     Start:{x:40,y:160}, Forest:{x:110,y:80}, Cave:{x:110,y:240}, Village:{x:190,y:50},
     Swamp:{x:195,y:155}, Ruins:{x:195,y:265}, Mountain:{x:275,y:80}, Castle:{x:280,y:165},
@@ -713,13 +699,11 @@ function applyMap(ms){
   for(let i=0;i<sol.length-1;i++) colorEdge(sol[i],sol[i+1],"#38aef8");
 }
 
-// ============ MODAL ============
 let pendingNextAfterModal = false;
 
 function showModal(isCorrect, explain, keyRule, scoreText) {
   const overlay = document.getElementById('modal-overlay');
   const box     = document.getElementById('modal-box');
-
   box.className = 'modal-box ' + (isCorrect ? 'correct-modal' : 'wrong-modal');
   document.getElementById('modal-icon').textContent    = isCorrect ? '✓' : '✗';
   document.getElementById('modal-title').textContent   = isCorrect ? 'Correct Answer!' : 'Not Quite Right';
@@ -727,7 +711,6 @@ function showModal(isCorrect, explain, keyRule, scoreText) {
   document.getElementById('modal-score-dot').className = 'modal-score-dot';
   document.getElementById('modal-score-text').textContent = scoreText;
   document.getElementById('modal-explain').textContent = explain;
-
   const kr = document.getElementById('modal-key-rule');
   if(keyRule) {
     document.getElementById('modal-key-rule-text').textContent = keyRule;
@@ -735,7 +718,6 @@ function showModal(isCorrect, explain, keyRule, scoreText) {
   } else {
     kr.style.display = 'none';
   }
-
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -744,9 +726,7 @@ function closeModal() {
   const overlay = document.getElementById('modal-overlay');
   overlay.classList.remove('active');
   document.body.style.overflow = '';
-  // Show the Next button after modal closes
   document.getElementById("next-btn").classList.add("show");
-  // Show trace after answering
   const q = qs[qi];
   if(q.trace && q.trace.length > 0) {
     const tb = document.getElementById("trainer-box");
@@ -756,12 +736,9 @@ function closeModal() {
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// Close on overlay click
 document.getElementById('modal-overlay').addEventListener('click', function(e) {
   if(e.target === this) closeModal();
 });
-
-// Close on ESC
 document.addEventListener('keydown', function(e) {
   if(e.key === 'Escape') closeModal();
 });
@@ -892,124 +869,124 @@ bfs:[
 ],
 dfs:[
 {
-  rule:"DFS uses a LIFO Stack — new children are pushed to the TOP and the TOP is always expanded next",
-  q:"You are navigating an Adventure Game map using DFS. Your agent starts at 'Start'. Goal: reach 'Shrine'. Before any expansion, what is on the stack?",
-  trace:[{step:0,exp:"—",front:"Stack top → [Start]"}],
-  ask:"What is the initial stack state?",
+  rule:"DFS uses a LIFO Stack — the TOP node is always expanded first; children are pushed to the TOP",
+  q:"You start DFS from 'Start' in the Adventure Game. Goal: reach 'Shrine'. Before any expansion, what is the frontier (stack)?",
+  trace:[{step:0,exp:"—",front:"[Start]"}],
+  ask:"What is the frontier (stack) before the first expansion?",
   activeStep:0,
-  opts:["top → [Start]","top → [Forest, Cave]","top → [Cave, Forest]","The stack is empty until the first expansion"],
+  opts:["[Start]","[Forest, Cave]","[Cave, Forest]","[] — the stack is empty until expansion begins"],
   ans:0,
-  explain:"DFS begins with only the start node on the stack. No neighbours have been pushed yet.",
-  keyRule:"Initial stack = {start node} only. Same as BFS at the start.",
+  explain:"DFS initialises with only the start node in the frontier (stack). No neighbours have been discovered yet. Frontier = [Start].",
+  keyRule:"Initial stack = {start node} only — exactly like BFS. Neighbours are pushed only when a node is expanded.",
   map:{start:["Start"],frontier:["Start"],goal:["Shrine"],expanded:[],solution:[]}
 },
 {
-  rule:"DFS pushes children in REVERSE alphabetical order so the alphabetically FIRST child ends up on TOP",
-  q:"DFS expands 'Start'. Its neighbours are Cave and Forest (alphabetical). To expand Forest FIRST (alphabetically first), in what order are they pushed onto the stack?",
-  trace:[{step:0,exp:"—",front:"top→[Start]"},{step:1,exp:"Start",front:"top→[Forest, Cave]"}],
-  ask:"In what order are Start's children pushed?",
+  rule:"DFS pushes children to the TOP of the stack; alphabetically first child ends up on top (pushed last)",
+  q:"DFS expands 'Start'. Its neighbours are Cave and Forest (alphabetical). They are pushed so Forest ends up on top. What does the frontier look like AFTER expanding Start? (Left = top of stack)",
+  trace:[{step:0,exp:"—",front:"[Start]"},{step:1,exp:"Start",front:"[Forest, Cave]"}],
+  ask:"What is the frontier after Start is expanded? (Explored = {Start})",
   activeStep:1,
-  opts:["Push Cave first, then Forest (so Forest is on top)","Push Forest first, then Cave (so Cave is on top)","Push in alphabetical order: Cave, Forest","Order doesn't matter — both are pushed together"],
+  opts:["[Forest, Cave] — Forest on top, Cave below","[Cave, Forest] — Cave on top, Forest below","[Start, Forest, Cave]","[Forest]"],
   ans:0,
-  explain:"LIFO: last pushed = first popped. To expand Forest first, push Cave first, then push Forest on top. Now Forest is at the top and will be expanded next.",
-  keyRule:"DFS: push children in REVERSE alphabetical order so the alphabetically first child ends up on TOP.",
+  explain:"Start is popped. Neighbours pushed in reverse alpha order: Cave first, then Forest on top. Explored = {Start}. Frontier (top→bottom) = [Forest, Cave].",
+  keyRule:"LIFO: push in reverse alpha order so alphabetically first child is on top and expanded next.",
   map:{start:["Start"],expanded:["Start"],frontier:["Forest","Cave"],goal:["Shrine"],solution:[]}
 },
 {
-  rule:"DFS dives as deep as possible — it always expands the node at the TOP of the stack",
-  q:"DFS from Start. Stack is top→[Forest, Cave]. DFS expands Forest. Forest's unvisited neighbours: Swamp, Village. After expanding Forest, what node is on the TOP of the stack?",
-  trace:[{step:0,exp:"—",front:"top→[Start]"},{step:1,exp:"Start",front:"top→[Forest, Cave]"},{step:2,exp:"Forest",front:"top→[Swamp, Village, Cave]"}],
-  ask:"What node is on top of the stack after expanding Forest?",
+  rule:"DFS always expands the TOP of the stack — it dives deep immediately without finishing the current level",
+  q:"Frontier = [Forest, Cave]. DFS expands Forest. Forest's unvisited neighbours: Swamp, Village (alpha). Pushed so Swamp ends up on top. What is the frontier AFTER expanding Forest?",
+  trace:[{step:0,exp:"—",front:"[Start]"},{step:1,exp:"Start",front:"[Forest, Cave]"},{step:2,exp:"Forest",front:"[Swamp, Village, Cave]"}],
+  ask:"What is the frontier after Forest is expanded? (Explored = {Start, Forest})",
   activeStep:2,
-  opts:["Swamp (pushed last, so on top — DFS goes deeper immediately)","Cave (was already in the stack before Forest was expanded)","Village","Forest (remains on the stack after expansion)"],
+  opts:["[Swamp, Village, Cave] — Swamp on top, Cave still at bottom","[Village, Swamp, Cave]","[Forest, Swamp, Village, Cave]","[Swamp, Village]"],
   ans:0,
-  explain:"Forest's children (Swamp, Village) are pushed in reverse alpha order: push Village first, then Swamp. Swamp is now on top. DFS will continue deeper into Swamp immediately — it never goes back to Cave or Village until the current branch is exhausted.",
-  keyRule:"DFS: newly added children go on TOP → always explores the deepest branch first.",
+  explain:"Forest is popped. Neighbours Village pushed first, then Swamp on top. Cave remains at the bottom untouched. Frontier = [Swamp, Village, Cave]. DFS dives into Swamp without touching Cave.",
+  keyRule:"DFS never finishes the current level — it dives into the newest child immediately. Cave waits at the bottom.",
   map:{start:["Start"],expanded:["Start","Forest"],frontier:["Swamp","Village","Cave"],goal:["Shrine"],solution:[]}
 },
 {
-  rule:"DFS may return a NON-OPTIMAL path because it stops as soon as it finds ANY path to the goal",
-  q:"DFS from Start finds the path: Start→Forest→Swamp→Castle→Dungeon→Shrine (5 hops). A shorter path exists: Start→Cave→Ruins→Dungeon→Shrine (4 hops). What does DFS do?",
-  trace:[],
-  ask:"DFS found Shrine via Dungeon. What does it do next?",
-  activeStep:-1,
-  opts:["Returns immediately with Start→Forest→Swamp→Castle→Dungeon→Shrine — does NOT look for shorter paths","Backtracks and finds the shorter path before returning","Continues exploring to confirm this is the shortest path","Returns failure because it did not find the optimal path"],
-  ans:0,
-  explain:"DFS is NOT optimal. The moment it reaches the goal it returns that path, regardless of whether a shorter or cheaper path exists. Here the 5-hop path is returned even though a 4-hop path exists via Cave.",
-  keyRule:"DFS = NOT optimal. Returns first found path, not the best one.",
-  map:{start:["Start"],expanded:["Start","Forest","Swamp","Castle","Dungeon"],frontier:[],goal:["Shrine"],solution:["Start","Forest","Swamp","Castle","Dungeon","Shrine"]}
-},
-{
-  rule:"DFS backtracks automatically when a dead end is reached — the stack handles it",
-  q:"DFS is exploring the Adventure Game and reaches Mountain. Mountain's only unvisited neighbour is Tower. After exploring Portal→Shrine sub-path, DFS needs to backtrack. What happens next?",
-  trace:[{step:3,exp:"Village",front:"top→[Mountain, Swamp, Cave]"},{step:4,exp:"Mountain",front:"top→[Tower, Castle, Swamp, Cave]"},{step:5,exp:"Tower",front:"top→[Portal, Castle, Swamp, Cave]"},{step:6,exp:"Portal",front:"top→[Shrine, Castle, Swamp, Cave]"}],
-  ask:"When DFS needs to backtrack from Portal, it...",
-  activeStep:3,
-  opts:["Pops the next node (Shrine) from the stack and expands it — the stack IS backtracking","Restarts the search from Start","Terminates and reports failure","Revisits Portal to try a different neighbour"],
-  ans:0,
-  explain:"DFS backtracking is automatic — it simply pops the next node from the LIFO stack. When Portal is done, the stack has [Shrine, Castle, Swamp, Cave]. Shrine is popped next. No explicit backtracking code is needed; the stack manages it.",
-  keyRule:"Backtracking in DFS = pop the next item from the stack. The stack IS the backtracking mechanism.",
-  map:{start:["Start"],expanded:["Start","Forest","Village","Mountain","Tower","Portal"],frontier:["Shrine","Castle","Swamp","Cave"],goal:["Shrine"],solution:[]}
-},
-{
-  rule:"DFS has O(b×m) space complexity — much better than BFS's O(b^d)",
-  q:"The Adventure Game map has a maximum branching factor b=3 and maximum depth m=6. At most how many nodes does DFS need to store simultaneously?",
-  trace:[],
-  ask:"Maximum nodes stored at once by DFS:",
-  activeStep:-1,
-  opts:["b×m = 3×6 = 18 nodes (current path + alternatives at each level)","b^m = 3^6 = 729 nodes (must store entire frontier like BFS)","m = 6 nodes (only the current path)","b^d where d is the goal depth"],
-  ans:0,
-  explain:"DFS only stores the current path plus the unexplored siblings at each level. At each of the m=6 levels, at most b=3 nodes are stored. Total ≤ b×m = 18. BFS would need to store the entire frontier: up to b^d nodes.",
-  keyRule:"DFS space = O(b×m). BFS space = O(b^d). DFS wins on memory for deep searches.",
-  map:{start:["Start"],expanded:[],frontier:[],goal:["Shrine"],solution:[]}
-},
-{
-  rule:"DFS goal test is on EXPANSION (popping from stack), not on generation",
-  q:"DFS is searching for Shrine. Shrine appears as a neighbour of Portal and gets pushed onto the stack. At that moment (step 6), is the search complete?",
-  trace:[{step:4,exp:"Mountain",front:"top→[Tower, Castle, Swamp, Cave]"},{step:5,exp:"Tower",front:"top→[Portal, Castle, Swamp, Cave]"},{step:6,exp:"Portal",front:"top→[Shrine, Castle, Swamp, Cave]"},{step:7,exp:"Shrine ✓ GOAL",front:"top→[Castle, Swamp, Cave]"}],
-  ask:"At step 6, Shrine is pushed onto the stack. Is the search complete?",
-  activeStep:3,
-  opts:["No — the search completes only at step 7 when Shrine is POPPED and expanded","Yes — the search is complete the moment Shrine is pushed (generated)","Yes — DFS checks the goal immediately when a neighbour is discovered","No — DFS must empty the entire stack before declaring success"],
-  ans:0,
-  explain:"DFS (like UCS) applies the goal test when a node is EXPANDED (popped), not when it is generated (pushed). At step 6 Shrine is merely on the stack. At step 7 it is popped and the goal test fires — SOLUTION is returned.",
-  keyRule:"DFS & UCS: goal test on EXPANSION. BFS: goal test on GENERATION.",
-  map:{start:["Start"],expanded:["Start","Forest","Village","Mountain","Tower","Portal"],frontier:["Shrine","Castle","Swamp","Cave"],goal:["Shrine"],solution:["Start","Forest","Village","Mountain","Tower","Portal","Shrine"]}
-},
-{
-  rule:"DFS is NOT complete in infinite or cyclic state spaces without a visited/explored set",
-  q:"The Adventure Game map has a cycle: Forest ↔ Swamp ↔ Cave ↔ Forest. If DFS explores without an explored set (tree search), what happens?",
-  trace:[{step:1,exp:"Start",front:"top→[Forest, Cave]"},{step:2,exp:"Forest",front:"top→[Swamp, Village, Cave]"},{step:3,exp:"Swamp",front:"top→[Cave, Ruins, Castle, Village, Cave]"},{step:4,exp:"Cave",front:"top→[Forest, Ruins, Castle, Village, Cave]"},{step:5,exp:"Forest",front:"top→[Swamp, Village, Ruins, Castle, Village, Cave]"}],
-  ask:"Without an explored set, DFS on a cyclic graph...",
-  activeStep:4,
-  opts:["Loops forever — Forest→Swamp→Cave→Forest→… never reaching Shrine","Still finds Shrine eventually — the stack handles cycles automatically","Backtracks correctly when it detects a repeated node","Terminates quickly because DFS only goes deep on one branch"],
-  ans:0,
-  explain:"Without an explored set (graph-search), DFS on a cyclic graph can loop infinitely. Forest expands Swamp, Swamp expands Cave, Cave expands Forest again — the same nodes keep getting pushed onto the stack.",
-  keyRule:"DFS completeness: complete in FINITE acyclic spaces; may loop infinitely in cyclic graphs WITHOUT an explored set.",
-  map:{start:["Start"],expanded:["Start","Forest","Swamp","Cave"],frontier:["Forest","Ruins","Castle","Village","Cave"],goal:["Shrine"],solution:[]}
-},
-{
-  rule:"DFS explores ONE full branch before trying another — this is its defining characteristic",
-  q:"DFS from Start. After expanding Start → [Forest, Cave], DFS expands Forest → [Swamp, Village]. DFS then expands Swamp → [Castle, Ruins]. Which nodes from the ORIGINAL frontier (Cave) and depth-1 (Village) have been expanded?",
-  trace:[{step:1,exp:"Start",front:"top→[Forest, Cave]"},{step:2,exp:"Forest",front:"top→[Swamp, Village, Cave]"},{step:3,exp:"Swamp",front:"top→[Castle, Ruins, Village, Cave]"}],
-  ask:"How many of the original sibling nodes (Cave, Village) have been expanded so far?",
+  rule:"DFS goes as deep as possible — siblings at earlier levels wait at the bottom of the stack",
+  q:"Frontier = [Swamp, Village, Cave]. DFS expands Swamp. Swamp's unvisited neighbours: Castle, Ruins (alpha). Pushed so Castle on top. What is the frontier AFTER expanding Swamp?",
+  trace:[{step:1,exp:"Start",front:"[Forest, Cave]"},{step:2,exp:"Forest",front:"[Swamp, Village, Cave]"},{step:3,exp:"Swamp",front:"[Castle, Ruins, Village, Cave]"}],
+  ask:"What is the frontier after Swamp is expanded? (Explored = {Start, Forest, Swamp})",
   activeStep:2,
-  opts:["Zero — DFS has not touched Cave or Village yet; it went deep into Forest→Swamp first","One — Cave was expanded before Forest because it was in the frontier first","Both — DFS expands siblings before going deeper","One — Village was expanded as Forest's child before Swamp"],
+  opts:["[Castle, Ruins, Village, Cave] — Castle on top","[Ruins, Castle, Village, Cave]","[Castle, Ruins, Cave, Village]","[Castle, Ruins]"],
   ans:0,
-  explain:"This is the core DFS behaviour: it dives deep. Start→Forest→Swamp — three levels deep — before touching Cave or Village. Both are sitting at the BOTTOM of the stack, untouched.",
-  keyRule:"DFS goes as DEEP as possible on the first branch before backtracking to explore siblings.",
+  explain:"Swamp is popped. Neighbours Ruins pushed first, then Castle on top. Village and Cave remain below — still untouched from earlier. Frontier = [Castle, Ruins, Village, Cave].",
+  keyRule:"Earlier siblings (Village, Cave) sink to the bottom. DFS always goes deeper before backtracking.",
   map:{start:["Start"],expanded:["Start","Forest","Swamp"],frontier:["Castle","Ruins","Village","Cave"],goal:["Shrine"],solution:[]}
 },
 {
-  rule:"DFS with an explored set (graph-search) avoids revisiting nodes and is complete in finite spaces",
-  q:"DFS has already expanded: Start, Forest, Swamp, Castle. Castle's neighbours include Forest (already in explored set) and Portal. What does DFS do with Forest?",
-  trace:[{step:1,exp:"Start",front:"top→[Forest, Cave]"},{step:2,exp:"Forest",front:"top→[Swamp, Village, Cave]"},{step:3,exp:"Swamp",front:"top→[Castle, Ruins, Village, Cave]"},{step:4,exp:"Castle",front:"top→[Tower, Portal, Dungeon, Ruins, Village, Cave]"}],
-  ask:"When Castle finds Forest as a neighbour (Forest is already explored), DFS...",
-  activeStep:3,
-  opts:["Skips Forest — it is already in the explored set and will not be pushed onto the stack","Pushes Forest onto the stack again — DFS does not check for repeated nodes","Stops the search because a cycle was detected","Removes Forest from the explored set and re-expands it"],
+  rule:"DFS backtracks automatically — the stack IS the backtracking mechanism; the next item is the backtrack point",
+  q:"Frontier = [Castle, Ruins, Village, Cave]. DFS expands Castle. Castle's unvisited neighbours: Dungeon, Portal, Tower (alpha). Pushed so Dungeon on top. What is the frontier AFTER expanding Castle?",
+  trace:[{step:2,exp:"Forest",front:"[Swamp, Village, Cave]"},{step:3,exp:"Swamp",front:"[Castle, Ruins, Village, Cave]"},{step:4,exp:"Castle",front:"[Dungeon, Portal, Tower, Ruins, Village, Cave]"}],
+  ask:"What is the frontier after Castle is expanded? (Explored = {Start, Forest, Swamp, Castle})",
+  activeStep:2,
+  opts:["[Dungeon, Portal, Tower, Ruins, Village, Cave]","[Tower, Portal, Dungeon, Ruins, Village, Cave]","[Dungeon, Portal, Tower, Castle, Ruins, Village, Cave]","[Dungeon, Portal, Tower]"],
   ans:0,
-  explain:"Graph-search DFS maintains an explored set. When Castle discovers Forest as a neighbour, it checks the explored set, finds Forest already there, and simply skips it. Only unvisited neighbours are pushed onto the stack.",
-  keyRule:"Graph-search DFS: skip any neighbour already in the explored set. This prevents cycles.",
-  map:{start:["Start"],expanded:["Start","Forest","Swamp","Castle"],frontier:["Tower","Portal","Dungeon","Ruins","Village","Cave"],goal:["Shrine"],solution:[]}
+  explain:"Castle is popped. Neighbours Tower, Portal, Dungeon pushed in reverse alpha — Dungeon lands on top. Existing nodes Ruins, Village, Cave stay below. Frontier = [Dungeon, Portal, Tower, Ruins, Village, Cave].",
+  keyRule:"Backtracking is automatic: when Dungeon's branch ends, Portal is next. No extra code needed — the stack handles it.",
+  map:{start:["Start"],expanded:["Start","Forest","Swamp","Castle"],frontier:["Dungeon","Portal","Tower","Ruins","Village","Cave"],goal:["Shrine"],solution:[]}
+},
+{
+  rule:"DFS goal test is on EXPANSION (popping), NOT when a node is pushed onto the stack",
+  q:"Frontier = [Dungeon, Portal, Tower, Ruins, Village, Cave]. DFS expands Dungeon. Dungeon's unvisited neighbour: Shrine. Shrine is pushed onto the stack. Is the search complete at this moment?",
+  trace:[{step:4,exp:"Castle",front:"[Dungeon, Portal, Tower, Ruins, Village, Cave]"},{step:5,exp:"Dungeon",front:"[Shrine, Portal, Tower, Ruins, Village, Cave]"}],
+  ask:"Shrine is now in the frontier (step 5). Is the search complete?",
+  activeStep:1,
+  opts:["No — search completes only when Shrine is POPPED and expanded (goal test on expansion)","Yes — the moment Shrine enters the frontier the search is done","Yes — DFS checks the goal whenever a neighbour is discovered","No — DFS must empty the entire stack before declaring success"],
+  ans:0,
+  explain:"DFS applies the goal test when a node is EXPANDED (popped), not when it is generated (pushed). At step 5, Shrine is in the frontier but not yet tested. The next step pops Shrine, the goal test fires, and the solution is returned.",
+  keyRule:"DFS & UCS: goal test on EXPANSION. BFS: goal test on GENERATION. This is a classic exam trap!",
+  map:{start:["Start"],expanded:["Start","Forest","Swamp","Castle","Dungeon"],frontier:["Shrine","Portal","Tower","Ruins","Village","Cave"],goal:["Shrine"],solution:[]}
+},
+{
+  rule:"DFS returns the FIRST path found — not the shortest or cheapest path",
+  q:"DFS expands Shrine (popped from top) — Goal! Path: Start→Forest→Swamp→Castle→Dungeon→Shrine (5 hops). A shorter path exists: Start→Cave→Ruins→Dungeon→Shrine (4 hops). What does DFS return?",
+  trace:[{step:5,exp:"Dungeon",front:"[Shrine, Portal, Tower, Ruins, Village, Cave]"},{step:6,exp:"Shrine ✓ GOAL",front:"[Portal, Tower, Ruins, Village, Cave]"}],
+  ask:"What path does DFS return?",
+  activeStep:1,
+  opts:["Start→Forest→Swamp→Castle→Dungeon→Shrine — DFS returns the FIRST found path, not the shortest","Start→Cave→Ruins→Dungeon→Shrine — DFS backtracks to find the shorter path","DFS explores all paths then picks the shortest","DFS returns failure — it did not find the optimal path"],
+  ans:0,
+  explain:"DFS is NOT optimal. The moment Shrine is popped and the goal test passes, DFS returns immediately. The remaining frontier [Portal, Tower, Ruins, Village, Cave] and the unexplored Cave branch are never visited.",
+  keyRule:"DFS = NOT optimal. First found path ≠ best path. Use UCS or A* when you need the optimal solution.",
+  map:{start:["Start"],expanded:["Start","Forest","Swamp","Castle","Dungeon"],frontier:["Portal","Tower","Ruins","Village","Cave"],goal:["Shrine"],solution:["Start","Forest","Swamp","Castle","Dungeon","Shrine"]}
+},
+{
+  rule:"DFS has O(b×m) space complexity — far better than BFS's O(b^d) since it stores only one branch at a time",
+  q:"The Adventure Game has branching factor b=3 and max depth m=6. BFS stores up to b^m = 729 nodes. At most how many nodes does DFS store simultaneously?",
+  trace:[],
+  ask:"Maximum nodes stored at once by DFS (b=3, m=6):",
+  activeStep:-1,
+  opts:["b×m = 3×6 = 18 nodes — current path + siblings at each level","b^m = 3^6 = 729 nodes — same as BFS","m = 6 nodes — only the current path","b^d where d = depth of the goal"],
+  ans:0,
+  explain:"DFS stores the current path plus the unexplored siblings at each level. At each of the m=6 levels, at most b=3 nodes sit on the stack. Total ≤ b×m = 18. BFS must store the entire frontier: up to 729 nodes.",
+  keyRule:"DFS space = O(b×m). BFS space = O(b^d). DFS is the clear winner on memory for deep searches.",
+  map:{start:["Start"],expanded:[],frontier:[],goal:["Shrine"],solution:[]}
+},
+{
+  rule:"DFS is NOT complete in cyclic graphs without an explored set — it loops forever on cycles",
+  q:"DFS has NO explored set. It expands Start→Forest→Swamp→Cave. Cave's neighbours include Forest (already visited but not recorded). What happens next?",
+  trace:[{step:1,exp:"Start",front:"[Forest, Cave]"},{step:2,exp:"Forest",front:"[Swamp, Village, Cave]"},{step:3,exp:"Swamp",front:"[Cave, Ruins, Village, Cave]"},{step:4,exp:"Cave",front:"[Forest, Ruins, Village, Cave]"},{step:5,exp:"Forest",front:"[Swamp, Village, Ruins, Village, Cave]"}],
+  ask:"Without an explored set, DFS on this cyclic graph...",
+  activeStep:4,
+  opts:["Loops forever — Forest→Swamp→Cave→Forest→… never reaching Shrine","Still finds Shrine — the stack handles cycles automatically","Backtracks correctly when it sees a repeated node","Terminates and reports failure after two visits to Forest"],
+  ans:0,
+  explain:"Without an explored set, DFS has no memory of visited nodes. Cave pushes Forest again, Forest pushes Swamp, Swamp pushes Cave — an infinite loop. Shrine is never reached.",
+  keyRule:"DFS completeness: complete in FINITE acyclic graphs WITH an explored set; infinite loops WITHOUT one on cyclic graphs.",
+  map:{start:["Start"],expanded:["Start","Forest","Swamp","Cave"],frontier:["Forest","Ruins","Village","Cave"],goal:["Shrine"],solution:[]}
+},
+{
+  rule:"DFS with an explored set skips already-explored neighbours — only unvisited nodes are pushed",
+  q:"Explored = {Start, Forest, Swamp, Castle, Dungeon}. DFS pops Shrine from the frontier and expands it — GOAL! What is the explored set at the moment the goal is found?",
+  trace:[{step:4,exp:"Castle",front:"[Dungeon, Portal, Tower, Ruins, Village, Cave]"},{step:5,exp:"Dungeon",front:"[Shrine, Portal, Tower, Ruins, Village, Cave]"},{step:6,exp:"Shrine ✓ GOAL",front:"[Portal, Tower, Ruins, Village, Cave]"}],
+  ask:"When Shrine is expanded (step 6), the explored set is:",
+  activeStep:2,
+  opts:["{Start, Forest, Swamp, Castle, Dungeon, Shrine} — a node joins explored when expanded","{Start, Forest, Swamp, Castle, Dungeon} — Shrine is the goal so it is not added to explored","{Start, Forest, Swamp, Castle, Dungeon, Shrine, Portal, Tower, Ruins, Village, Cave}","Only {Shrine} — only the goal node matters"],
+  ans:0,
+  explain:"A node joins the explored set when it is EXPANDED (popped). Shrine is popped, the goal test passes, and Shrine is added to explored. The remaining frontier [Portal, Tower, Ruins, Village, Cave] is never visited. Final explored = {Start, Forest, Swamp, Castle, Dungeon, Shrine}.",
+  keyRule:"Explored set: nodes are added on EXPANSION. Frontier nodes are discovered but not yet explored.",
+  map:{start:["Start"],expanded:["Start","Forest","Swamp","Castle","Dungeon","Shrine"],frontier:["Portal","Tower","Ruins","Village","Cave"],goal:["Shrine"],solution:["Start","Forest","Swamp","Castle","Dungeon","Shrine"]}
 }
 ],
 ucs:[
@@ -1136,7 +1113,6 @@ ucs:[
 ]
 };
 
-// ============ STATE ============
 let algo=null, qi=0, score=0, answered=false, history=[], qs=[];
 const COLORS={bfs:"#0062a1", dfs:"#0e93e8", ucs:"#003254"};
 const NAMES={bfs:"Breadth-First Search", dfs:"Depth-First Search", ucs:"Uniform Cost Search"};
